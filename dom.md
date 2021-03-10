@@ -1,7 +1,7 @@
 # DOM XSS 
 
-## 1 Reflected DOM XSS with insecure JSON escaping
-* URL: https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected
+## 1) Reflected DOM XSS with insecure JSON escaping
+* Ref: https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected
 
 
 XXX.com/?search=evil
@@ -41,7 +41,7 @@ Let's see how the request works...
 Simple *alert(1)* payload:
 <img src="img/dom/1/burp1.png"><br><br>
 
-as we can see, the double quote (*""*) is encoded...
+as we can see, the double quote (*""*) is escaped...
 
 <img src="img/dom/1/burp2.png"><br><br>
 
