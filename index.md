@@ -2,6 +2,6 @@
 <img src="gift.jpg" width=280>
 
 # index
-* [Reflected XSS](reflected.md)
-* [Stored XSS](stored.md)
-* [DOM XSS](dom.md)
+* [fumny XSS](fumnyxss.md)
+* [cheatsheet](cheatsheet.md)
+* [other stuff](otherstuff.md)
