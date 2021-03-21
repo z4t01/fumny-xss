@@ -3,5 +3,6 @@
 
 # index
 * [fumny XSS](fumnyxss.md)
+* [CSP](csp.md)
 * [cheatsheet](cheatsheet.md)
 * [other stuff](otherstuff.md)

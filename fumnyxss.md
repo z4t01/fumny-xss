@@ -205,4 +205,51 @@ So, we can try the following payload (the previous one but HTMl encoded):
 
 <img src="img/3/poc1.png"><br><br>
 
-<img src="img/3/poc2.png">
+<img src="img/3/poc2.png"><br><br><br>
+
+
+
+
+## 3) Reflected XSS in a JavaScript URL with some characters blocked
+
+* Ref: https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-url-some-characters-blocked
+
+
+ Some websites make XSS more difficult by restricting which characters you are allowed to use.One way of bypassing the website's blacklist is to use the *throw* statement with an exception handler. **This enables you to pass arguments to a function without using parentheses**. 
+ 
+ The following code assigns the *alert()* function to the global exception handler and the *throw* statement passes the 1 to the exception handler (in this case alert). The end result is that the alert() function is called with 1 as an argument.
+
+* `onerror=alert;throw 1 `
+
+
+Let's take a look at our lab.
+When you access a blog post, you request the following URL:
+* `XXX..web-security-academy.net/post?postId=3`
+
+where '3' is the target post's ID.
+By taking a look at the source code, we can notice that our postId attribute has been reflected into the JavaScript code to handle the "Back to blog" button event:
+
+```
+<div class="is-linkback">
+   <a href="javascript:fetch('/analytics', {method:'post',body:'/post%3fpostId%3d3'}).finally(_ => window.location = '/')">Back to Blog</a>
+</div>
+```
+
+Firstly, let's analyze the code:
+* This is a `<a href>` element which, when clicked, makes a post request to "/analytics" and redirects the user to the root page ("/")
+
+The first thing we can try is to escape from the JavaScript code by injecting the following payload:
+* `&'}` => `&%27}`(URL encoded)
+
+
+
+
+
+```
+https://your-lab-id.web-security-academy.net/post?postId=3&%27},x=x=%3E{throw/**/onerror=alert,1337},toString=x,window%2b%27%27,{x:%27 
+```
+
+
+```
+https://your-lab-id.web-security-academy.net/post?postId=3&'},x=x=>{throw/**/onerror=alert,1337},toString=x,window+'',{x:'
+```
