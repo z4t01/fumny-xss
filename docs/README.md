@@ -1,7 +1,6 @@
 # fumny XSS hehe
-Click the fumny doge to access Index page
+Read the content [HERE](https://z4t01.github.io/fumny-xss/)
 
 HEHE FUMMNY
 
-<a href="index.md">
-<img src="gift.jpg" width=280></a>
+<img src="gift.jpg" width=280>
